@@ -63,9 +63,10 @@ app.get('/rounds/:id', (req, res) => {
 
 app.post('/rounds', (req, res) => {
   const lastAddedRound = rounds[rounds.length - 1];
-  req.body.id = lastAddedRound ? lastAddedRound.id + 1 : 1; // mutation!!!
-  rounds.push(req.body);
-  return res.json(req.body);
+  let round = {...req.body};
+  round.id = lastAddedRound ? lastAddedRound.id + 1 : 1;
+  rounds.push(round);
+  return res.json(round);
 });
 
 app.listen(3000, () => {
