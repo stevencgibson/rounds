@@ -2,10 +2,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const getBarById = require('./utils/getBarById');
 const searchBarsByName = require('./utils/searchBarsByName');
-const getBarProducts = require('./utils/getBarProducts');
-const getRoundById = require('./utils/getRoundById');
 const getProductById = require('./utils/getProductById');
 const sortRoundsByDateTimeDescending = require('./utils/sortRoundsByDateTimeDescending');
 const bars = require('./data/bars');
@@ -13,7 +10,6 @@ const products = require('./data/products');
 const barsProducts = require('./data/barsProducts');
 let rounds = require('./data/rounds');
 const app = express();
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -27,20 +23,22 @@ app.get('/bars', (req, res) => {
   const searchTerm = req.query.searchTerm;
   
   res.json({
-    results: searchTerm ? searchBarsByName(bars, searchTerm) : bars
+    results: searchTerm ? bars.filter(searchBarsByName(searchTerm)) : bars
   });
 });
 
 app.get('/bars/:id', (req, res) => {
-  const bar = getBarById(bars, req.params.id);
-  const barProducts = getBarProducts(barsProducts, req.params.id);
-  const productsA = barProducts.map((barProducts) => getProductById(products, barsProducts, barProducts.productId, bar.id));
-  
+  const barId = req.params.id;
+  const bar = bars.find((bar) => bar.id == barId);
+  const barProducts = barsProducts.filter((barsProduct) => barsProduct.barId == barId);
+  const barProductsDetail = barProducts.map((barProducts) => getProductById(products, barsProducts, barProducts.productId, bar.id));
+  console.log(barProducts);
+  console.log(barProductsDetail);
   res.json({
     id: bar.id,
     name: bar.name,
     imageUrl: bar.imageUrl,
-    products: productsA
+    products: barProductsDetail
   });
 });
 
@@ -53,7 +51,7 @@ app.get('/rounds', (req, res) => {
 });
 
 app.get('/rounds/:id', (req, res) => {
-  const round = getRoundById(rounds, req.params.id);
+  const round = rounds.filter((round) => round.id == req.params.id);
   if (round) return res.json(round);
   return res.status(404).send('Not found');
 });
