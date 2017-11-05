@@ -23,9 +23,6 @@ export default class Bars extends Component {
       .then((res) => res.json())
       .then((res) => {
         this.setState({ bars: res.data });
-        // this.setState((prevState, props) => {
-        //   return { searchResults: !prevState.searchResults }
-        // });
       })
   }
   

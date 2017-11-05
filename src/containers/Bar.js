@@ -44,13 +44,10 @@ export default class Bar extends Component {
           imageUrl: res.imageUrl,
           products: res.products
         });
-        // this.setState((prevState, props) => {
-        //   return { searchResults: !prevState.searchResults }
-        // });
       })
   }
   
-  // yuck doesn't work !!!
+  // yuck !!!
   decreaseQuantity(id) {
     const stateCopy = {...this.state};
     const index = stateCopy.round.products.findIndex((product) => product.id === id);

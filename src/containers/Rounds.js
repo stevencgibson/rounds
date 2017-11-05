@@ -23,9 +23,6 @@ export default class Rounds extends Component {
       .then((res) => res.json())
       .then((res) => {
         this.setState({ rounds: res.data  });
-        // this.setState((prevState, props) => {
-        //   return { searchResults: !prevState.searchResults }
-        // });
       })
   }
   

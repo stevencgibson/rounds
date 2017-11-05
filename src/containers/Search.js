@@ -25,9 +25,7 @@ export default class Search extends Component {
         searchTerm: null,
         searchResults: []
       });
-      // this.setState((prevState, props) => {
-      //   return { searchResults: !prevState.searchResults }
-      // });
+      
       return;
     }
       
@@ -42,9 +40,6 @@ export default class Search extends Component {
           searchTerm: searchTerm,
           searchResults: res.data
         });
-        // this.setState((prevState, props) => {
-        //   return { searchResults: !prevState.searchResults }
-        // });
       })
   }
   
