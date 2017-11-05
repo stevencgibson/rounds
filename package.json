@@ -4,8 +4,8 @@
   "description": "",
   "main": "./src/api.js",
   "scripts": {
-    "dev": "webpack -p && concurrently \"webpack-dev-server --content-base src/static --inline --hot\" \"node src/api.js\"",
-    "test": "jest --watch"
+    "dev": "webpack -p && concurrently \"webpack-dev-server --content-base src/static --inline --hot\" \"node src/api.js\" \"jest --watchAll\"",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
