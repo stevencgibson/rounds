@@ -22,11 +22,11 @@ export default class Navigation extends Component {
     }
     
     return (
-      <navigation style={stickyNavigation}>
+      <nav style={stickyNavigation}>
         <Link to="/" style={stickyNavigationItem}>Search</Link>
         <Link to="/bars" style={stickyNavigationItem}>Bars</Link>
         <Link to="/rounds" style={stickyNavigationItem}>Rounds</Link>
-      </navigation>
+      </nav>
     );
   }
 }
