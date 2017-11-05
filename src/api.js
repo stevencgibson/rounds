@@ -7,6 +7,7 @@ const searchBarsByName = require('./utils/searchBarsByName');
 const getBarProducts = require('./utils/getBarProducts');
 const getRoundById = require('./utils/getRoundById');
 const getProductById = require('./utils/getProductById');
+const sortRoundsByDateTimeDescending = require('./utils/sortRoundsByDateTimeDescending');
 const bars = require('./data/bars');
 const products = require('./data/products');
 const barsProducts = require('./data/barsProducts');
@@ -44,8 +45,10 @@ app.get('/bars/:id', (req, res) => {
 });
 
 app.get('/rounds', (req, res) => {
+  const isSortByDateTimeDescending = req.query.sortBy === 'datetime' && req.query.direction === 'descending';
+
   return res.json({
-    results: rounds
+    results: isSortByDateTimeDescending ? rounds.slice().sort(sortRoundsByDateTimeDescending) : rounds
   });
 });
 

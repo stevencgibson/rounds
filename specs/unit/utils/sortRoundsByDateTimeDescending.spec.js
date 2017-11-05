@@ -16,7 +16,7 @@ describe('sortRoundsByDateTimeDescending', () => {
       products: []
     }];
     
-    rounds = rounds.sort(sortRoundsByDateTimeDescending);
+    rounds.sort(sortRoundsByDateTimeDescending);
     
     expect(rounds[0].orderedAt).toEqual('2017-10-31T19:49:18.208Z');
     expect(rounds[1].orderedAt).toEqual('2017-10-30T19:49:18.208Z');
@@ -35,7 +35,7 @@ describe('sortRoundsByDateTimeDescending', () => {
       products: []
     }];
     
-    rounds = rounds.sort(sortRoundsByDateTimeDescending);
+    rounds.sort(sortRoundsByDateTimeDescending);
     
     expect(rounds[0].orderedAt).toEqual('2017-10-31T20:49:18.208Z');
     expect(rounds[1].orderedAt).toEqual('2017-10-31T19:49:18.208Z');
