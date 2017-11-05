@@ -55,7 +55,7 @@ export default class Search extends Component {
     
     return (
       <div>
-        <h1 className="h3">Search</h1>
+        <h1 className="h5">Search</h1>
         <form>
           <div className="form-group">
             <label htmlFor="search" className="sr-only">Bar</label>

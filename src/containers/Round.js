@@ -51,7 +51,7 @@ export default class Round extends Component {
     
     return (
       <div>
-        <h1 className="h3"><BarHeading bar={this.state} /></h1>
+        <h1 className="h5"><BarHeading bar={this.state} /></h1>
         <table className="table">
           <thead>
             <tr>

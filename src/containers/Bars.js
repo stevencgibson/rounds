@@ -32,7 +32,7 @@ export default class Bars extends Component {
   render() {
     return (
       <div>
-        <h1 className="h3">Bars</h1>
+        <h1 className="h5">Bars</h1>
         <BarList bars={this.state.bars} />
       </div>
     );

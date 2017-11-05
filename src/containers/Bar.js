@@ -100,53 +100,55 @@ export default class Bar extends Component {
   }
   
   render() {
-    const listStyle = {
-      margin: '0',
-      padding: '0'
+    const tableStyle = {
+      margin: '30px 0',
+      width: '100%'
+    }
+  
+    const tableCellStyle = {
+      padding: '6px 0'
     }
     
-    const listItemStyle = {
-      borderBottom: 'solid 1px #dadada',
-      listStyleType: 'none',
-      padding: '10px 0'
+    const quantityLabel = {
+      display: 'inline-block',
+      width: '34px'
     }
     
-    const buttonReset = {
-      background: 'none',
-      border: 'solid 1px blue',
-      borderRadius: '50px',
-      color: 'blue',
-      height: '44px',
-      padding: 0,
-      width: '44px'
+    const quantityControl = {
+      marginLeft: '6px',
+      width: '40px'
+    }
+    
+    const quantityControlHidden = {
+      marginLeft: '6px',
+      visibility: 'hidden',
+      width: '40px'
     }
 
     return (
       <div>
-        <h1 className="h3"><BarHeading bar={this.state} /></h1>
-        <table className="table">
+        <h1 className="h5"><BarHeading bar={this.state} /></h1>
+        <table style={tableStyle}>
           <thead>
             <tr>
-              <th scope="col"><span className="sr-only">Product</span></th>
-              <th scope="col"><span className="sr-only">Price</span></th>
+              <th scope="col" className="sr-only">Product</th>
               <th scope="col">Quantity</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th scope="row" colspan="2">Round Total</th>
+              <th scope="row">Round Total</th>
               <td>{formatPenceAsPounds(this.state.round.products.reduce((sum, product) => sum + product.priceInPence, 0))}</td>
             </tr>
           </tfoot>
           <tbody>
             {this.state.products.map((product) => {
-              return <tr key={product.id} style={listItemStyle}>
-                <td>{product.name}</td>
-                <td>{formatPenceAsPounds(product.priceInPence)}</td>
-                <td>
-                  {this.state.round.products.filter((p) => p.id === product.id).length}
-                  {this.state.round.products.filter((p) => p.id === product.id).length > 0 && <button type="button" style={buttonReset} onClick={this.decreaseQuantity.bind(this, product.id)}><span aria-hidden="true">-</span><span className="sr-only">Decrease {product.name}</span></button>}
-                  <button type="button" style={buttonReset} onClick={this.increaseQuantity.bind(this, product.id)}><span aria-hidden="true">+</span><span className="sr-only">Increase {product.name}</span></button>
+              return <tr key={product.id}>
+                <td style={tableCellStyle}>{product.name} ({formatPenceAsPounds(product.priceInPence)})</td>
+                <td style={tableCellStyle}>
+                  <span style={quantityLabel}>{this.state.round.products.filter((p) => p.id === product.id).length}</span>
+                  <button type="button" className="btn btn-outline-primary" style={this.state.round.products.filter((p) => p.id === product.id).length > 0 ? quantityControl : quantityControlHidden} onClick={this.decreaseQuantity.bind(this, product.id)}><span aria-hidden="true">-</span><span className="sr-only">Decrease {product.name}</span></button>
+                  <button type="button" className="btn btn-outline-primary" style={quantityControl} onClick={this.increaseQuantity.bind(this, product.id)}><span aria-hidden="true">+</span><span className="sr-only">Increase {product.name}</span></button>
                 </td>
               </tr>
             })}
@@ -155,7 +157,7 @@ export default class Bar extends Component {
         {this.state.round.products.length > 0 &&
           <div>
             <button type="button" className="btn btn-success btn-block" onClick={this.saveRound}>Save Round</button>
-            <button type="button" className="btn btn-secondary btn-block" onClick={this.resetRound}>Reset</button>
+            <button type="button" className="btn btn-outline-secondary btn-block" onClick={this.resetRound}>Reset</button>
           </div>
         }
       </div>

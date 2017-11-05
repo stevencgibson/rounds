@@ -32,7 +32,7 @@ export default class Rounds extends Component {
   render() {
     return (
       <div>
-        <h1 className="h3">Rounds</h1>
+        <h1 className="h5">Rounds</h1>
         <RoundList rounds={this.state.rounds} />
       </div>
     );
