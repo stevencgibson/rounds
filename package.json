@@ -4,7 +4,8 @@
   "description": "",
   "main": "./src/api.js",
   "scripts": {
-    "dev": "webpack -p && concurrently \"webpack-dev-server --content-base src/static --inline --hot\" \"node src/api.js\""
+    "dev": "webpack -p && concurrently \"webpack-dev-server --content-base src/static --inline --hot\" \"node src/api.js\"",
+    "test": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,7 @@
     "concurrently": "3.5.0",
     "express": "4.16.2",
     "http-server": "0.10.0",
+    "jest": "20.0.4",
     "webpack": "3.8.1",
     "webpack-dev-server": "2.7.1"
   }
