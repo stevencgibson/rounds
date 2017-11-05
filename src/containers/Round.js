@@ -56,23 +56,20 @@ export default class Round extends Component {
           <thead>
             <tr>
               <th scope="col"><span className="sr-only">Product</span></th>
-              <th scope="col"><span className="sr-only">Price</span></th>
               <th scope="col">Quantity</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
-              <th scope="row" colspan="2">Round Total</th>
+              <th scope="row">Round Total</th>
               <td>{roundTotalPriceInPounds}</td>
             </tr>
           </tfoot>
           <tbody>
             {this.state.products.map((product) => {
               return <tr key={product.id} style={listItemStyle}>
-                <td>{product.id}</td>
-                <td>{formatPenceAsPounds(product.priceInPence)}</td>
-                <td>
-                </td>
+                <td>{product.id} ({formatPenceAsPounds(product.priceInPence)})</td>
+                <td></td>
               </tr>
             })}
           </tbody>

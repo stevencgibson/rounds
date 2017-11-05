@@ -34,20 +34,3 @@ ReactDOM.render(
     </div>
   </BrowserRouter>
 , document.querySelector('#root'));
-
-
-// if ('serviceWorker' in navigator && !navigator.standalone) {
-//   // window.addEventListener('beforeinstallprompt', function(e) {
-//   //   e.userChoice.then(function(choiceResult) {
-//   //     if (choiceResult.outcome !== 'dismissed') {
-//   //       // Track PWA being added to homescreen
-//   //     }
-//   //   });
-//   // });
-// 
-//   navigator.serviceWorker.register('./js/sw.js').then(function(reg) {
-//     // Track app install banner being shown
-//   }).catch(function(err) {
-//     alert(err);
-//   });
-// }
