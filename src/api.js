@@ -28,12 +28,11 @@ app.get('/bars', (req, res) => {
 });
 
 app.get('/bars/:id', (req, res) => {
-  const barId = req.params.id;
-  const bar = bars.find((bar) => bar.id == barId);
-  const barProducts = barsProducts.filter((barsProduct) => barsProduct.barId == barId);
+  const barId = parseInt(req.params.id);
+  const bar = bars.find((bar) => bar.id === barId);
+  const barProducts = barsProducts.filter((barsProduct) => barsProduct.barId === barId);
   const barProductsDetail = barProducts.map((barProducts) => getProductById(products, barsProducts, barProducts.productId, bar.id));
-  console.log(barProducts);
-  console.log(barProductsDetail);
+
   res.json({
     id: bar.id,
     name: bar.name,
@@ -51,7 +50,8 @@ app.get('/rounds', (req, res) => {
 });
 
 app.get('/rounds/:id', (req, res) => {
-  const round = rounds.filter((round) => round.id == req.params.id);
+  const roundId = parseInt(req.params.id);
+  const round = rounds.filter((round) => round.id === roundId);
   if (round) return res.json(round);
   return res.status(404).send('Not found');
 });
