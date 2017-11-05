@@ -1,15 +1,15 @@
 'use strict'
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const searchBarsByName = require('./utils/searchBarsByName');
-const getProductById = require('./utils/getProductById');
-const sortBarsByNameAscending = require('./utils/sortBarsByNameAscending');
-const sortRoundsByDateTimeDescending = require('./utils/sortRoundsByDateTimeDescending');
-const bars = require('./data/bars');
-const products = require('./data/products');
-const barsProducts = require('./data/barsProducts');
-let rounds = require('./data/rounds');
+import express from 'express';
+import bodyParser from 'body-parser';
+import searchBarsByName from './utils/searchBarsByName';
+import getProductById from './utils/getProductById';
+import sortBarsByNameAscending from './utils/sortBarsByNameAscending';
+import sortRoundsByDateTimeDescending from './utils/sortRoundsByDateTimeDescending';
+import bars from './data/bars';
+import products from './data/products';
+import barsProducts from './data/barsProducts';
+import rounds from './data/rounds';
 const app = express();
 
 app.use(bodyParser.json());
