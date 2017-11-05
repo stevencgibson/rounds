@@ -31,7 +31,6 @@ export default class Search extends Component {
       return;
     }
       
-    // setSearchResults()
     this.searchBars(e.target.value);
   }
   
