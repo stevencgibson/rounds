@@ -36,7 +36,7 @@ export default class Search extends Component {
   }
   
   searchBars(searchTerm) {
-    fetch(`http://localhost:3000/bars/?searchTerm=${searchTerm}`)
+    fetch(`http://localhost:3000/bars/?searchTerm=${searchTerm}&sortBy=name&direction=ascending`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({

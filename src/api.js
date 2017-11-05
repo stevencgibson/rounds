@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const searchBarsByName = require('./utils/searchBarsByName');
 const getProductById = require('./utils/getProductById');
+const sortBarsByNameAscending = require('./utils/sortBarsByNameAscending');
 const sortRoundsByDateTimeDescending = require('./utils/sortRoundsByDateTimeDescending');
 const bars = require('./data/bars');
 const products = require('./data/products');
@@ -21,9 +22,12 @@ app.use(function(req, res, next) {
 
 app.get('/bars', (req, res) => {
   const searchTerm = req.query.searchTerm;
+  const isSortByNameAscending = req.query.sortBy === 'name' && req.query.direction === 'ascending';
+  const matchingBars = searchTerm ? bars.filter(searchBarsByName(searchTerm)) : bars;
+  const matchingBarsSorted = isSortByNameAscending ? matchingBars.slice().sort(sortBarsByNameAscending) : matchingBars;
   
   res.json({
-    data: searchTerm ? bars.filter(searchBarsByName(searchTerm)) : bars
+    data: matchingBarsSorted
   });
 });
 
@@ -43,9 +47,10 @@ app.get('/bars/:id', (req, res) => {
 
 app.get('/rounds', (req, res) => {
   const isSortByDateTimeDescending = req.query.sortBy === 'datetime' && req.query.direction === 'descending';
+  const roundsSorted = isSortByDateTimeDescending ? rounds.slice().sort(sortRoundsByDateTimeDescending) : rounds;
 
   return res.json({
-    data: isSortByDateTimeDescending ? rounds.slice().sort(sortRoundsByDateTimeDescending) : rounds
+    data: roundsSorted
   });
 });
 
