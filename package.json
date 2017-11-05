@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/api.js",
   "scripts": {
-    "dev": "webpack -p && concurrently \"webpack-dev-server --content-base src/static --inline --hot\" \"node src/api.js\" \"jest --watchAll\"",
+    "dev": "concurrently \"webpack-dev-server\" \"node src/api.js\" \"jest --watchAll\"",
     "test": "jest"
   },
   "keywords": [],
