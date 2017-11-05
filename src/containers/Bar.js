@@ -10,15 +10,15 @@ export default class Bar extends Component {
     super(props);
     
     this.state = {
-      id: '',
-      name: '',
-      lat: '',
-      lng: '',
-      imageUrl: '',
+      id: null,
+      name: null,
+      lat: null,
+      lng: null,
+      imageUrl: null,
       products: [],
       round: {
-        barId: '',
-        orderedAt: '',
+        barId: null,
+        orderedAt: null,
         products: []
       }
     }
@@ -154,8 +154,8 @@ export default class Bar extends Component {
         </table>
         {this.state.round.products.length > 0 &&
           <div>
-            <button type="button" className="btn btn-primary btn-block" onClick={this.saveRound}>Save Round</button>
-            <button type="button" className="btn btn-outline-primary btn-block" onClick={this.resetRound}>Reset</button>
+            <button type="button" className="btn btn-success btn-block" onClick={this.saveRound}>Save Round</button>
+            <button type="button" className="btn btn-secondary btn-block" onClick={this.resetRound}>Reset</button>
           </div>
         }
       </div>

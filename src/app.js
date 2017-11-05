@@ -9,6 +9,7 @@ import Bar from './containers/Bar';
 import Rounds from './containers/Rounds';
 import Round from './containers/Round';
 import Header from './components/Header';
+import Navigation from './components/Navigation';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -29,6 +30,7 @@ ReactDOM.render(
           </div>
         </div>
       </main>
+      <Navigation />
     </div>
   </BrowserRouter>
 , document.querySelector('#root'));

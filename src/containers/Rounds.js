@@ -22,7 +22,7 @@ export default class Rounds extends Component {
     fetch(`http://localhost:3000/rounds/?sortBy=datetime&direction=descending`)
       .then((res) => res.json())
       .then((res) => {
-        this.setState({ rounds: res.results  });
+        this.setState({ rounds: res.data  });
         // this.setState((prevState, props) => {
         //   return { searchResults: !prevState.searchResults }
         // });

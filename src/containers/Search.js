@@ -9,7 +9,7 @@ export default class Search extends Component {
     super(props);
     
     this.state = {
-      searchTerm: '',
+      searchTerm: null,
       searchResults: []
     };
     
@@ -22,7 +22,7 @@ export default class Search extends Component {
     
     if (!searchTerm) {
       this.setState({
-        searchTerm: '',
+        searchTerm: null,
         searchResults: []
       });
       // this.setState((prevState, props) => {
@@ -41,7 +41,7 @@ export default class Search extends Component {
       .then((res) => {
         this.setState({
           searchTerm: searchTerm,
-          searchResults: res.results
+          searchResults: res.data
         });
         // this.setState((prevState, props) => {
         //   return { searchResults: !prevState.searchResults }
@@ -62,8 +62,6 @@ export default class Search extends Component {
             <label htmlFor="search" className="sr-only">Bar</label>
             <input id="search" name="search" type="text" placeholder="Search for a bar" autoComplete="off" onKeyUp={this.handleKeyPress} className="form-control" />
             <span role="alert">{resultsCountMessage}</span>
-            <Link to="rounds" style={{float:'right'}}>View all rounds</Link>
-            <Link to="bars" style={{float:'right'}}>View all bars</Link>
           </div>
         </form>
         <BarList bars={this.state.searchResults} />

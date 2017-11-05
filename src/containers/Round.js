@@ -10,9 +10,9 @@ export default class Round extends Component {
     super(props);
     
     this.state = {
-      id: '',
-      barId: '',
-      orderedAt: '',
+      id: null,
+      barId: null,
+      orderedAt: null,
       products: []
     };
     

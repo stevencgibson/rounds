@@ -23,7 +23,7 @@ app.get('/bars', (req, res) => {
   const searchTerm = req.query.searchTerm;
   
   res.json({
-    results: searchTerm ? bars.filter(searchBarsByName(searchTerm)) : bars
+    data: searchTerm ? bars.filter(searchBarsByName(searchTerm)) : bars
   });
 });
 
@@ -45,7 +45,7 @@ app.get('/rounds', (req, res) => {
   const isSortByDateTimeDescending = req.query.sortBy === 'datetime' && req.query.direction === 'descending';
 
   return res.json({
-    results: isSortByDateTimeDescending ? rounds.slice().sort(sortRoundsByDateTimeDescending) : rounds
+    data: isSortByDateTimeDescending ? rounds.slice().sort(sortRoundsByDateTimeDescending) : rounds
   });
 });
 

@@ -22,7 +22,7 @@ export default class Bars extends Component {
     fetch(`http://localhost:3000/bars/`)
       .then((res) => res.json())
       .then((res) => {
-        this.setState({ bars: res.results });
+        this.setState({ bars: res.data });
         // this.setState((prevState, props) => {
         //   return { searchResults: !prevState.searchResults }
         // });
