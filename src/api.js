@@ -34,6 +34,9 @@ app.get('/bars', (req, res) => {
 app.get('/bars/:id', (req, res) => {
   const barId = parseInt(req.params.id);
   const bar = bars.find((bar) => bar.id === barId);
+  
+  if (!bar) return res.status(404).send('Not found');
+  
   const barProducts = barsProducts.filter((barsProduct) => barsProduct.barId === barId);
   const barProductsDetail = barProducts.map((barProducts) => getProductById(products, barsProducts, barProducts.productId, bar.id));
 
