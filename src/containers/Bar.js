@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import BarHeading from '../components/BarHeading';
 import moment from 'moment';
 import formatPenceAsPounds from '../utils/formatPenceAsPounds';
-import styles from '../styles/components/table.css';
+import styles from '../styles/components/products.css';
 
 export default class Bar extends Component {
   constructor(props) {
