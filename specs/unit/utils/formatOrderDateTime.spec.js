@@ -1,10 +1,15 @@
 'use strict';
 
 import formatOrderDateTime from '../../../src/utils/formatOrderDateTime';
+import MockDate from 'MockDate';
 
 describe('formatOrderDateTime', () => {
   beforeEach(() => {
-    Date.now = jest.fn(() => new Date(Date.UTC(2017, 10, 5)).valueOf());
+    MockDate.set('2017-11-05T11:49:18.208Z');
+  });
+  
+  afterEach(() => {
+    MockDate.reset();
   });
   
   it('returns an order from today as "Today at h:mm A"', () => {
