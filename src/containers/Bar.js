@@ -43,29 +43,35 @@ export default class Bar extends Component {
           lat: null,
           lng: null,
           imageUrl: res.imageUrl,
-          products: res.products
-        });
+          products: res.products,
+          round: {
+            barId: res.id,
+            orderedAt: null,
+            products: []
+          }
+        }); // yuck !!!
       })
   }
   
-  // yuck !!!
   decreaseQuantity(id) {
     const stateCopy = {...this.state};
-    const index = stateCopy.round.products.findIndex((product) => product.id === id);
+    const indexAtWhichProductAdded = stateCopy.round.products.findIndex((product) => product.id === id);
     
-    if (index > -1) {
-      const removed = stateCopy.round.products.splice(index, 1);
+    if (indexAtWhichProductAdded > -1) {
+      const removed = stateCopy.round.products.splice(indexAtWhichProductAdded, 1); // yuck !!!
       this.setState({
         ...stateCopy
       });
     }
   }
   
-  // yuck !!!
   increaseQuantity(id) {
     const stateCopy = {...this.state};
-    stateCopy.round.products.push(stateCopy.products.find((product) => product.id === id));
-    // why does this work if we're using const?
+    const product = stateCopy.products.find((product) => product.id === id);
+    stateCopy.round.products.push({
+      id: product.id,
+      priceInPence: product.priceInPence
+    }); // yuck !!!
     this.setState({
       ...stateCopy
     });
@@ -74,7 +80,7 @@ export default class Bar extends Component {
   saveRound() {
     this.state.round.orderedAt = moment().toISOString();
     
-    let request = new Request('http://localhost:3000/rounds/', {
+    const request = new Request('http://localhost:3000/rounds/', {
     	method: 'POST',
       body: JSON.stringify(this.state.round),
       headers: {
@@ -98,6 +104,11 @@ export default class Bar extends Component {
   }
   
   render() {
+    const products = this.state.products;
+    const addedProducts = this.state.round.products;
+    const totalPriceInPence = addedProducts.reduce((sum, product) => sum + product.priceInPence, 0);
+    const totalPriceInPounds = formatPenceAsPounds(totalPriceInPence);
+    
     return (
       <div>
         <h1 className="h5"><BarHeading bar={this.state} /></h1>
@@ -112,14 +123,14 @@ export default class Bar extends Component {
           <tfoot>
             <tr>
               <th scope="row">Round Total</th>
-              <td>{formatPenceAsPounds(this.state.round.products.reduce((sum, product) => sum + product.priceInPence, 0))}</td>
+              <td>{totalPriceInPounds}</td>
             </tr>
           </tfoot>
           <tbody>
-            {this.state.products.map((product) => {
+            {products.map((product) => {
               return <tr key={product.id}>
                 <td className="products__cell">{product.name} ({formatPenceAsPounds(product.priceInPence)})</td>
-                <td className="products__cell">{this.state.round.products.filter((p) => p.id === product.id).length}</td>
+                <td className="products__cell">{addedProducts.filter((p) => p.id === product.id).length}</td>
                 <td className="products__cell">
                   <button type="button" className="btn btn-outline-primary products__control" onClick={this.decreaseQuantity.bind(this, product.id)}><span aria-hidden="true">-</span><span className="sr-only">Decrease {product.name}</span></button>
                   <button type="button" className="btn btn-outline-primary products__control" onClick={this.increaseQuantity.bind(this, product.id)}><span aria-hidden="true">+</span><span className="sr-only">Increase {product.name}</span></button>
@@ -128,7 +139,7 @@ export default class Bar extends Component {
             })}
           </tbody>
         </table>
-        {this.state.round.products.length > 0 &&
+        {addedProducts.length > 0 &&
           <div>
             <button type="button" className="btn btn-success btn-block" onClick={this.saveRound}>Save Round</button>
             <button type="button" className="btn btn-outline-secondary btn-block" onClick={this.resetRound}>Reset</button>

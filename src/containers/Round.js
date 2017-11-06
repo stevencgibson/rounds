@@ -27,28 +27,29 @@ export default class Round extends Component {
     fetch(`http://localhost:3000/rounds/${this.props.match.params.id}`)
       .then((res) => res.json())
       .then((res) => {
-        this.setState(res);
+        this.setState({...res});
       })
   }
   
   render() {
-    const roundTotalPriceInPence = this.state.products.reduce((sum, product) => sum + product.priceInPence, 0);
-    const roundTotalPriceInPounds = formatPenceAsPounds(roundTotalPriceInPence);
-    
+    const totalPriceInPence = this.state.products.reduce((sum, product) => sum + product.priceInPence, 0);
+    const totalPriceInPounds = formatPenceAsPounds(totalPriceInPence);
+
     return (
       <div>
         <h1 className="h5"><BarHeading bar={this.state} /></h1>
-        <table className="table">
+        <table className="products">
           <thead>
             <tr>
-              <th scope="col"><span className="sr-only">Product</span></th>
+              <th scope="col" className="sr-only">Product</th>
               <th scope="col">Quantity</th>
+              <th scope="col" className="sr-only">Action</th>
             </tr>
           </thead>
           <tfoot>
             <tr>
               <th scope="row">Round Total</th>
-              <td>{roundTotalPriceInPounds}</td>
+              <td>{totalPriceInPounds}</td>
             </tr>
           </tfoot>
           <tbody>
