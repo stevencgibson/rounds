@@ -32,17 +32,6 @@ export default class Round extends Component {
   }
   
   render() {
-    const listStyle = {
-      margin: '0',
-      padding: '0'
-    }
-    
-    const listItemStyle = {
-      borderBottom: 'solid 1px #dadada',
-      listStyleType: 'none',
-      padding: '10px 0'
-    }
-    
     const roundTotalPriceInPence = this.state.products.reduce((sum, product) => sum + product.priceInPence, 0);
     const roundTotalPriceInPounds = formatPenceAsPounds(roundTotalPriceInPence);
     
@@ -64,7 +53,7 @@ export default class Round extends Component {
           </tfoot>
           <tbody>
             {this.state.products.map((product) => {
-              return <tr key={product.id} style={listItemStyle}>
+              return <tr key={product.id}>
                 <td>{product.id} ({formatPenceAsPounds(product.priceInPence)})</td>
                 <td></td>
               </tr>

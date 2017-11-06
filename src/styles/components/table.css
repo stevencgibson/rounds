@@ -1,0 +1,13 @@
+.products {
+  margin: 30px 0;
+  width: 100%;
+}
+
+.products__cell {
+  padding: 6px 0;
+}
+
+.products__control {
+  margin-left: 6px;
+  width: 40px;
+}

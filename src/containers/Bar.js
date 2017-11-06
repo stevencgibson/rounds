@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import BarHeading from '../components/BarHeading';
 import moment from 'moment';
 import formatPenceAsPounds from '../utils/formatPenceAsPounds';
+import styles from '../styles/components/table.css';
 
 export default class Bar extends Component {
   constructor(props) {
@@ -97,39 +98,15 @@ export default class Bar extends Component {
   }
   
   render() {
-    const tableStyle = {
-      margin: '30px 0',
-      width: '100%'
-    }
-  
-    const tableCellStyle = {
-      padding: '6px 0'
-    }
-    
-    const quantityLabel = {
-      display: 'inline-block',
-      width: '34px'
-    }
-    
-    const quantityControl = {
-      marginLeft: '6px',
-      width: '40px'
-    }
-    
-    const quantityControlHidden = {
-      marginLeft: '6px',
-      visibility: 'hidden',
-      width: '40px'
-    }
-
     return (
       <div>
         <h1 className="h5"><BarHeading bar={this.state} /></h1>
-        <table style={tableStyle}>
+        <table className="products">
           <thead>
             <tr>
               <th scope="col" className="sr-only">Product</th>
               <th scope="col">Quantity</th>
+              <th scope="col" className="sr-only">Action</th>
             </tr>
           </thead>
           <tfoot>
@@ -141,11 +118,11 @@ export default class Bar extends Component {
           <tbody>
             {this.state.products.map((product) => {
               return <tr key={product.id}>
-                <td style={tableCellStyle}>{product.name} ({formatPenceAsPounds(product.priceInPence)})</td>
-                <td style={tableCellStyle}>
-                  <span style={quantityLabel}>{this.state.round.products.filter((p) => p.id === product.id).length}</span>
-                  <button type="button" className="btn btn-outline-primary" style={this.state.round.products.filter((p) => p.id === product.id).length > 0 ? quantityControl : quantityControlHidden} onClick={this.decreaseQuantity.bind(this, product.id)}><span aria-hidden="true">-</span><span className="sr-only">Decrease {product.name}</span></button>
-                  <button type="button" className="btn btn-outline-primary" style={quantityControl} onClick={this.increaseQuantity.bind(this, product.id)}><span aria-hidden="true">+</span><span className="sr-only">Increase {product.name}</span></button>
+                <td className="products__cell">{product.name} ({formatPenceAsPounds(product.priceInPence)})</td>
+                <td className="products__cell">{this.state.round.products.filter((p) => p.id === product.id).length}</td>
+                <td className="products__cell">
+                  <button type="button" className="btn btn-outline-primary products__control" onClick={this.decreaseQuantity.bind(this, product.id)}><span aria-hidden="true">-</span><span className="sr-only">Decrease {product.name}</span></button>
+                  <button type="button" className="btn btn-outline-primary products__control" onClick={this.increaseQuantity.bind(this, product.id)}><span aria-hidden="true">+</span><span className="sr-only">Increase {product.name}</span></button>
                 </td>
               </tr>
             })}

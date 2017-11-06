@@ -1,0 +1,15 @@
+.nav {
+  bottom: 0;
+  display: flex;
+  position: absolute;
+  width: 100%;
+}
+
+.nav__link {
+  background-color: #fafafa;
+  border-left: solid 1px #eaeaea;
+  border-top: solid 1px #eaeaea;
+  flex-grow: 1;
+  padding: 12px 0;
+  text-align: center;
+}
