@@ -56,7 +56,7 @@ app.get('/rounds', (req, res) => {
 
 app.get('/rounds/:id', (req, res) => {
   const roundId = parseInt(req.params.id);
-  const round = rounds.filter((round) => round.id === roundId);
+  const round = rounds.find((round) => round.id === roundId);
   if (round) return res.json(round);
   return res.status(404).send('Not found');
 });
