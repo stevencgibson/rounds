@@ -5,7 +5,7 @@ import searchBarsByName from '../../../src/utils/searchBarsByName';
 describe('searchBarsByName', () => {
   it('returns a bar if its name contains a given string', () => {
     const bars = [{
-      id: 1,
+      id: '1',
       name: 'Bloc',
     	lat: null,
     	long: null,
@@ -19,7 +19,7 @@ describe('searchBarsByName', () => {
   
   it('returns no bar if its name doesnt contain a given string', () => {
     const bars = [{
-      id: 1,
+      id: '1',
       name: 'Bloc',
     	lat: null,
     	long: null,

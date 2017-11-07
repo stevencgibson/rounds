@@ -19,7 +19,7 @@ export default class Rounds extends Component {
   }
   
   getRounds() {
-    fetch(`http://localhost:3000/rounds/?sortBy=datetime&direction=descending`)
+    fetch(`http://localhost:3000/rounds?sortBy=datetime&direction=descending`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({ rounds: res.data  });

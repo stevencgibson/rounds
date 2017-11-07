@@ -32,7 +32,7 @@ app.get('/bars', (req, res) => {
 });
 
 app.get('/bars/:id', (req, res) => {
-  const barId = parseInt(req.params.id);
+  const barId = req.params.id;
   const bar = bars.find((bar) => bar.id === barId);
   
   if (!bar) return res.status(404).send('Not found');
@@ -58,16 +58,29 @@ app.get('/rounds', (req, res) => {
 });
 
 app.get('/rounds/:id', (req, res) => {
-  const roundId = parseInt(req.params.id);
+  const roundId = req.params.id;
   const round = rounds.find((round) => round.id === roundId);
-  if (round) return res.json(round);
-  return res.status(404).send('Not found');
+
+  if (!round) return res.status(404).send('Not found');
+  
+  let roundCopy = {...round};
+
+  round.products = round.products.map((roundProduct) => {
+    const product = products.find((product) => product.id === roundProduct.id);
+    
+    return {
+      ...product,
+      priceInPence: roundProduct.priceInPence
+    };
+  }); // Yuck !!!
+
+  return res.json(round);
 });
 
 app.post('/rounds', (req, res) => {
   const lastAddedRound = rounds[rounds.length - 1];
   let round = {...req.body};
-  round.id = lastAddedRound ? lastAddedRound.id + 1 : 1;
+  round.id = (lastAddedRound ? parseInt(lastAddedRound.id) + 1 : 1).toString();
   rounds.push(round);
   return res.json(round);
 });

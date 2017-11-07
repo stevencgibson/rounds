@@ -1,71 +1,71 @@
 'use strict';
 
 module.exports = [{
-  barId: 1,
-  productId: 1,
+  barId: '1',
+  productId: '1',
   priceInPence: 400
 }, {
-  barId: 1,
-  productId: 2,
+  barId: '1',
+  productId: '2',
   priceInPence: 475
 }, {
-  barId: 1,
-  productId: 3,
+  barId: '1',
+  productId: '3',
   priceInPence: 475
 }, {
-  barId: 1,
-  productId: 5,
+  barId: '1',
+  productId: '5',
   priceInPence: 300
 }, {
-  barId: 2,
-  productId: 1,
+  barId: '2',
+  productId: '1',
   priceInPence: 405
 }, {
-  barId: 2,
-  productId: 2,
+  barId: '2',
+  productId: '2',
   priceInPence: 505
 }, {
-  barId: 2,
-  productId: 3,
+  barId: '2',
+  productId: '3',
   priceInPence: 505
 }, {
-  barId: 2,
-  productId: 5,
+  barId: '2',
+  productId: '5',
   priceInPence: 335
 }, {
-  barId: 3,
-  productId: 1,
+  barId: '3',
+  productId: '1',
   priceInPence: 460
 }, {
-  barId: 3,
-  productId: 2,
+  barId: '3',
+  productId: '2',
   priceInPence: 470
 }, {
-  barId: 3,
-  productId: 3,
+  barId: '3',
+  productId: '3',
   priceInPence: 470
 }, {
-  barId: 4,
-  productId: 1,
+  barId: '4',
+  productId: '1',
   priceInPence: 340
 }, {
-  barId: 4,
-  productId: 4,
+  barId: '4',
+  productId: '4',
   priceInPence: 620
 }, {
-  barId: 4,
-  productId: 5,
+  barId: '4',
+  productId: '5',
   priceInPence: 300
 }, {
-  barId: 5,
-  productId: 1,
+  barId: '5',
+  productId: '1',
   priceInPence: 450
 }, {
-  barId: 5,
-  productId: 2,
+  barId: '5',
+  productId: '2',
   priceInPence: 575
 }, {
-  barId: 5,
-  productId: 3,
+  barId: '5',
+  productId: '3',
   priceInPence: 575
 }];

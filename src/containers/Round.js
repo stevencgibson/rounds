@@ -4,13 +4,15 @@ import React, { Component } from 'react';
 import moment from 'moment';
 import BarHeading from '../components/BarHeading';
 import formatPenceAsPounds from '../utils/formatPenceAsPounds';
+import formatOrderDateTime from '../utils/formatOrderDateTime';
+import findUniqueProducts from '../utils/findUniqueProducts';
 
 export default class Round extends Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      id: null,
+      id: this.props.match.params.id,
       barId: null,
       orderedAt: null,
       products: []
@@ -24,7 +26,7 @@ export default class Round extends Component {
   }
   
   getRound() {
-    fetch(`http://localhost:3000/rounds/${this.props.match.params.id}`)
+    fetch(`http://localhost:3000/rounds/${this.state.id}`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({...res});
@@ -32,12 +34,14 @@ export default class Round extends Component {
   }
   
   render() {
-    const totalPriceInPence = this.state.products.reduce((sum, product) => sum + product.priceInPence, 0);
+    const products = this.state.products;
+    const uniqueProducts = findUniqueProducts(products);
+    const totalPriceInPence = products.reduce((sum, product) => sum + product.priceInPence, 0);
     const totalPriceInPounds = formatPenceAsPounds(totalPriceInPence);
-
+    
     return (
       <div>
-        <h1 className="h5"><BarHeading bar={this.state} /></h1>
+        <h1 className="h5">{formatOrderDateTime(this.state.orderedAt)}</h1>
         <table className="products">
           <thead>
             <tr>
@@ -49,14 +53,14 @@ export default class Round extends Component {
           <tfoot>
             <tr>
               <th scope="row">Round Total</th>
-              <td>{totalPriceInPounds}</td>
+              <td colSpan="2">{totalPriceInPounds}</td>
             </tr>
           </tfoot>
           <tbody>
-            {this.state.products.map((product) => {
+            {uniqueProducts.map((product) => {
               return <tr key={product.id}>
-                <td>{product.id} ({formatPenceAsPounds(product.priceInPence)})</td>
-                <td></td>
+                <td>{product.name} ({formatPenceAsPounds(product.priceInPence)})</td>
+                <td>{products.filter((p) => p.id === product.id).length}</td>
               </tr>
             })}
           </tbody>

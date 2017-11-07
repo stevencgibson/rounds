@@ -19,7 +19,7 @@ export default class Bars extends Component {
   }
   
   getBars() {
-    fetch(`http://localhost:3000/bars/?sortBy=name&direction=ascending`)
+    fetch(`http://localhost:3000/bars?sortBy=name&direction=ascending`)
       .then((res) => res.json())
       .then((res) => {
         this.setState({ bars: res.data });
