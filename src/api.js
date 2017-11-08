@@ -50,7 +50,14 @@ app.get('/bars/:id', (req, res) => {
 
 app.get('/rounds', (req, res) => {
   const isSortByDateTimeDescending = req.query.sortBy === 'datetime' && req.query.direction === 'descending';
-  const roundsSorted = isSortByDateTimeDescending ? rounds.slice().sort(sortRoundsByDateTimeDescending) : rounds;
+  const roundsResponse = rounds.map((round) => {
+    return {
+      id: round.id,
+      bar: `http://localhost:3000/bars/${round.barId}`,
+      orderedAt: round.orderedAt
+    };
+  });
+  const roundsSorted = isSortByDateTimeDescending ? roundsResponse.slice().sort(sortRoundsByDateTimeDescending) : roundsResponse;
 
   return res.json({
     data: roundsSorted
