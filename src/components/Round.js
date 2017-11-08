@@ -31,9 +31,10 @@ export default class Round extends Component {
   decreaseQuantity(id) {
     let stateCopy = {...this.state};
     const indexAtWhichProductAdded = stateCopy.products.findIndex((product) => product.id === id);
-    
-    if (indexAtWhichProductAdded > -1) {
-      const removed = stateCopy.products.splice(indexAtWhichProductAdded, 1); // yuck !!!
+    const isProductAlreadyAdded = indexAtWhichProductAdded > -1;
+
+    if (isProductAlreadyAdded) {
+      stateCopy.products.splice(indexAtWhichProductAdded, 1);
       this.setState({
         ...stateCopy
       });
