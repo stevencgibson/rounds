@@ -49,17 +49,17 @@ Response body:
 ```
 {
   "data": [{
-    "id": "2",
-    "name": "Slouch",
-    "lat": null,
-    "long": null,
-    "imageUrl": "http://localhost:8080/images/bar-logos/slouch-logo.png"
-  }, {
     "id": "1",
     "name": "Bloc",
     "lat": null,
     "long": null,
     "imageUrl": "http://localhost:8080/images/bar-logos/bloc-logo.png"
+  }, {
+    "id": "2",
+    "name": "Slouch",
+    "lat": null,
+    "long": null,
+    "imageUrl": "http://localhost:8080/images/bar-logos/slouch-logo.png"
   }...]
 }
 ```
@@ -92,23 +92,12 @@ Response body:
 {
   "data": [{
     "id": "1",
-    "barId": "1",
-    "orderedAt": "2017-10-25T19:49:18.208Z",
-    "products": [{
-      "id": "1",
-      "priceInPence": 414
-    }, {
-      "id": "1",
-      "priceInPence": 414
-    }...]
+    "bar": "http://localhost:3000/bars/1",
+    "orderedAt": "2017-10-25T19:49:18.208Z"
   }, {
     "id": "2",
-    "barId": "1",
-    "orderedAt": "2017-10-30T19:49:18.208Z",
-    "products": [{
-      "id": "1",
-      "priceInPence": 414
-    }...]
+    "bar": "http://localhost:3000/bars/1",
+    "orderedAt": "2017-10-30T19:49:18.208Z"
   }...]
 }
 ```
@@ -122,52 +111,12 @@ Response body:
 {
   "data": [{
     "id": "2",
-    "barId": "1",
-    "orderedAt": "2017-10-30T19:49:18.208Z",
-    "products": [{
-      "id": "1",
-      "priceInPence": 414
-    }...]
+    "bar": "http://localhost:3000/bars/1",
+    "orderedAt": "2017-10-30T19:49:18.208Z"
   }, {
     "id": "1",
-    "barId": "1",
-    "orderedAt": "2017-10-25T19:49:18.208Z",
-    "products": [{
-      "id": "1",
-      "priceInPence": 414
-    }, {
-      "id": "1",
-      "priceInPence": 414
-    }...]
-  }...]
-}
-```
-
-
-### GET /rounds/:id
-
-Response body:
-
-```
-{
-  "id": "1",
-  "barId": "1",
-  "orderedAt": "2017-11-07T20:59:42.166Z",
-  "products": [{
-    "id": "1",
-    "name": "Beer",
-    "imageUrl": null,
-    "priceInPence": 414
-  }, {
-    "id": "1",
-    "name": "Beer",
-    "imageUrl": null,
-    "priceInPence": 414
-  }, {
-    "id": "1",
-    "name": "Beer",
-    "imageUrl": null,
-    "priceInPence": 414
+    "bar": "http://localhost:3000/bars/1",
+    "orderedAt": "2017-10-25T19:49:18.208Z"
   }...]
 }
 ```
@@ -199,7 +148,7 @@ Response body:
 ```
 {
   "id": "1",
-  "barId": "1",
+  "bar": "http://localhost:3000/bars/1",
   "orderedAt": "2017-11-07T20:59:42.166Z",
   "products": [{
     "id": "1",
@@ -210,6 +159,35 @@ Response body:
   }, {
     "id": "2",
     "priceInPence": 300
+  }...]
+}
+```
+
+
+### GET /rounds/:id
+
+Response body:
+
+```
+{
+  "id": "1",
+  "bar": "http://localhost:3000/bars/1",
+  "orderedAt": "2017-11-07T20:59:42.166Z",
+  "products": [{
+    "id": "1",
+    "name": "Beer",
+    "imageUrl": null,
+    "priceInPence": 414
+  }, {
+    "id": "1",
+    "name": "Beer",
+    "imageUrl": null,
+    "priceInPence": 414
+  }, {
+    "id": "1",
+    "name": "Beer",
+    "imageUrl": null,
+    "priceInPence": 414
   }...]
 }
 ```

@@ -65,31 +65,47 @@ app.get('/rounds', (req, res) => {
 });
 
 app.get('/rounds/:id', (req, res) => {
+  /* TODO
+    - find a better way to return the data we need for a round
+    - id, bar, orderedAt, product ID, product name, product imageUrl, product priceInPence (for that round)
+  */
   const roundId = req.params.id;
   const round = rounds.find((round) => round.id === roundId);
-
+  
   if (!round) return res.status(404).send('Not found');
   
-  let roundCopy = {...round};
-
-  round.products = round.products.map((roundProduct) => {
-    const product = products.find((product) => product.id === roundProduct.id);
+  const roundResponse = {
+    id: round.id,
+    bar: `http://localhost:3000/bars/${round.barId}`,
+    orderedAt: round.orderedAt,
+    products: round.products.map((roundProduct) => {
+      const product = products.find((product) => product.id === roundProduct.id);
     
-    return {
-      ...product,
-      priceInPence: roundProduct.priceInPence
-    };
-  }); // Yuck !!!
+      return {
+        ...product,
+        priceInPence: roundProduct.priceInPence
+      };
+    })
+  };
 
-  return res.json(round);
+  return res.json(roundResponse);
 });
 
 app.post('/rounds', (req, res) => {
   const lastAddedRound = rounds[rounds.length - 1];
+  const roundId = (lastAddedRound ? parseInt(lastAddedRound.id) + 1 : 1).toString();
   let round = {...req.body};
-  round.id = (lastAddedRound ? parseInt(lastAddedRound.id) + 1 : 1).toString();
+  let response = {
+    id: roundId,
+    bar: `http://localhost:3000/bars/${round.barId}`,
+    orderedAt: round.orderedAt,
+    products: round.products
+  }
+
+  round.id = roundId;
   rounds.push(round);
-  return res.json(round);
+  
+  return res.json(response);
 });
 
 app.listen(3000, () => {
