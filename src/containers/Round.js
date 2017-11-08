@@ -39,6 +39,9 @@ export default class Round extends Component {
     const totalPriceInPence = products.reduce((sum, product) => sum + product.priceInPence, 0);
     const totalPriceInPounds = formatPenceAsPounds(totalPriceInPence);
     
+    /* TODO:
+      - find a way to reuse this markup across this container and the Round component
+    */
     return (
       <div>
         <h1 className="h5">{formatOrderDateTime(this.state.orderedAt)}</h1>

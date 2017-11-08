@@ -46,7 +46,7 @@ export default class Round extends Component {
     stateCopy.products.push({
       id: product.id,
       priceInPence: product.priceInPence
-    }); // yuck !!!
+    });
     this.setState({
       ...stateCopy
     });
@@ -85,6 +85,10 @@ export default class Round extends Component {
     const totalPriceInPounds = formatPenceAsPounds(totalPriceInPence);
     const isRoundEmpty = addedProducts.length === 0;
     
+    
+    /* TODO:
+      - find a way to reuse this markup across this component and the Round container
+    */
     return (
       <div>
         <table className="products">
