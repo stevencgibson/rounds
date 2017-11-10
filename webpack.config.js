@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -19,6 +20,9 @@ module.exports = {
       loader: 'style-loader!css-loader'
     }]
   },
+  plugins: [
+    new UglifyJSPlugin()
+  ],
   devServer: {
     contentBase: path.join(__dirname, 'src/static'),
     compress: true,
